@@ -13,14 +13,8 @@ void tone_init(uint32_t GPIO_num){
 bool set_tone(uint32_t GPIO_num,uint32_t tone_num){
     uint32_t slice_num = pwm_gpio_to_slice_num(GPIO_num);
     uint32_t ch_num = pwm_gpio_to_channel(GPIO_num);
-
-    float freq = 0.0f;
-    // if(tone_num-69 < 0){
-    //     
-    // }else{
-    //     freq  = powf(2,(tone_num-69)/12) * 440;
-    // }
-    freq  = powf(2,((float)tone_num+3.0)/12.0) * 6.875;
+    
+    float freq  = powf(2,((float)tone_num+3.0)/12.0) * 6.875;
 
     if(freq < 31.0f){
         return false;

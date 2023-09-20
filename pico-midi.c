@@ -28,13 +28,28 @@ int main(void)
     gpio_pull_up(I2C_SDA);
     gpio_pull_up(I2C_SCL);
 
-    
-
-    tone_init(28);
+    tones_init();
 
     while(1){
         tud_task();
         midi_task();
+        while(midi_message_available()){
+            midi_message_t new_message = midi_get_message();
+            switch (new_message.event){
+            case NOTE_OFF:
+                board_led_off();
+                tones_delete(new_message.tone);
+                //tones_all_delete();
+                break;
+            case NOTE_ON:
+                board_led_on();
+                tones_new(new_message.tone,new_message.velocity);
+                break;
+            default:
+                //nop
+                break;
+            }
+        }
     }
 
     return 0;

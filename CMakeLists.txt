@@ -25,7 +25,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pico-midi pico-midi.c midi_control.c usb_descriptors.c pwm_tone.c)
+add_executable(pico-midi pico-midi.c midi_control.c usb_descriptors.c pwm_tone.c tones_control.c)
 
 pico_set_program_name(pico-midi "pico-midi")
 pico_set_program_version(pico-midi "0.1")
