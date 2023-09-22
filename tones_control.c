@@ -35,7 +35,7 @@ bool tones_new(uint32_t tone,uint32_t velocity){
 
 void tones_all_delete(void){
     for(uint8_t i = 0; i < tone_pin_n; i++){
-        tone_delete(tone_out_pin[i]);
+        tone_stop(tone_out_pin[i]);
         tone_state_array[i].is_playing = false;
     }
     tones_init();

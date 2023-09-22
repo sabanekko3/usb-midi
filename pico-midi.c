@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 
-#include "pwm_tone.h"
+#include "tones_control.h"
 #include "midi_control.h"
 
 // I2C defines
@@ -30,26 +30,37 @@ int main(void)
 
     tones_init();
 
+    adc_init();
+    adc_gpio_init(28);
+    adc_select_input(2);    
+    int adc_data = 0;
     while(1){
-        tud_task();
-        midi_task();
-        while(midi_message_available()){
-            midi_message_t new_message = midi_get_message();
-            switch (new_message.event){
-            case NOTE_OFF:
-                board_led_off();
-                tones_delete(new_message.tone);
-                //tones_all_delete();
-                break;
-            case NOTE_ON:
-                board_led_on();
-                tones_new(new_message.tone,new_message.velocity);
-                break;
-            default:
-                //nop
-                break;
-            }
+        // tud_task();
+        // midi_task();
+        // while(midi_message_available()){
+        //     midi_message_t new_message = midi_get_message();
+        //     switch (new_message.event){
+        //     case NOTE_OFF:
+        //         board_led_off();
+        //         tones_delete(new_message.tone);
+        //         //tones_all_delete();
+        //         break;
+        //     case NOTE_ON:
+        //         board_led_on();
+        //         tones_new(new_message.tone,new_message.velocity);
+        //         break;
+        //     default:
+        //         //nop
+        //         break;
+        //     }
+        // }
+        int tmp = adc_data;
+        adc_data = adc_read();
+        if(adc_data != tmp){
+            tones_delete(tmp >> 5);
+            tones_new(adc_data >> 5,0);
         }
+
     }
 
     return 0;
