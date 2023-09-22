@@ -23,7 +23,7 @@ bool set_tone(uint32_t GPIO_num,uint32_t tone_num){
     float pwm_ch_level = pwm_period * 0.01;
  
     pwm_set_wrap(slice_num, (int)pwm_period);
-    pwm_set_chan_level(slice_num,ch_num, 100);
+    pwm_set_chan_level(slice_num,ch_num, 50);
     pwm_set_enabled(slice_num, true);
     return true;
 }

@@ -48,6 +48,7 @@ target_link_libraries(pico-midi
         hardware_i2c
         pico_stdlib
         hardware_pwm
+        hardware_adc
         tinyusb_device
         tinyusb_board
         )

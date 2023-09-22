@@ -22,11 +22,6 @@ bool tones_delete(uint32_t tone){
 }
 
 bool tones_new(uint32_t tone,uint32_t velocity){
-    // for(int i = 0; i < tone_pin_n; i++){
-    //     if(tone_state_array[i].tone == tone){
-    //         return false;
-    //     }
-    // }
     for(int i = 0; i < tone_pin_n; i++){
         if(!tone_state_array[i].is_playing){
             set_tone(tone_out_pin[i],tone);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pwm_tone.h"
+#include "hardware/adc.h"
 
 #include "bsp/board.h"
 #include "tusb.h"
@@ -20,14 +21,14 @@ typedef enum tone_pin{
 }tone_pin_t;
 
 const uint32_t tone_out_pin[tone_pin_n] = {
+    6,
+    8,
+    10,
+    12,
+    14,
     16,
     18,
     20,
-    22,
-    8,
-    26,
-    28,
-    14,
 };
 
 typedef struct tone_state{
