@@ -54,4 +54,3 @@ target_link_libraries(pico-midi
         )
 
 pico_add_extra_outputs(pico-midi)
-

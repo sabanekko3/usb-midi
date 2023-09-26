@@ -1,10 +1,7 @@
-#pragma once
+#ifndef _TONES_CONTROL_H_
+#define _TONES_CONTROL_H_
 
 #include "pwm_tone.h"
-#include "hardware/adc.h"
-
-#include "bsp/board.h"
-#include "tusb.h"
 
 #define TONES_N 8
 
@@ -20,17 +17,6 @@ typedef enum tone_pin{
     tone_pin_n,
 }tone_pin_t;
 
-const uint32_t tone_out_pin[tone_pin_n] = {
-    6,
-    8,
-    10,
-    12,
-    14,
-    16,
-    18,
-    20,
-};
-
 typedef struct tone_state{
     bool is_playing;
     uint32_t tone;
@@ -43,3 +29,5 @@ bool tones_delete(uint32_t tone);
 bool tones_new(uint32_t tone,uint32_t velocity);
 
 void tones_all_delete(void);
+
+#endif //_TONES_CONTROL_H_

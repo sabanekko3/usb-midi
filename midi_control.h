@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MIDI_CONTROL_H_
+#define _MIDI_CONTROL_H_
 
 #include "pico/stdlib.h"
 #include "bsp/board.h"
@@ -26,3 +27,4 @@ uint32_t midi_message_available(void);
 
 midi_message_t midi_get_message(void);
 
+#endif //_MIDI_CONTROL_H_
